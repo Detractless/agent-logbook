@@ -35,7 +35,7 @@ test('does not turn unsafe links or quotes into HTML attributes', () => {
   assert.equal(javascriptLink, '<p>[click](javascript:alert(1))</p>')
 
   const brokenHref = md('[x](https://a.com"onmouseover="alert(1))')
-  assert.doesNotMatch(brokenHref, /\sonmouseover\s*=/i)
+  assert.equal(brokenHref, '<p><a href="https://a.com&quot;onmouseover=&quot;alert(1" title="https://a.com&quot;onmouseover=&quot;alert(1">x</a>)</p>')
 })
 
 test('escapes markup inside fenced code', () => {
